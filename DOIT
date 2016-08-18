@@ -12,4 +12,5 @@ sleep 1
 curl -s https://a.4cdn.org/$board/thread/$thr.json \
 	| jq '[.posts?[] | {no: .no, com: .com, now: .now}]' \
 	| tr -d '\n' \
-	| python display.py
+	| python display.py \
+	| less -r
