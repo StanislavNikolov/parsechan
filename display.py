@@ -28,6 +28,32 @@ def setColor(char):
     else:
         print('[39m', end='')
 
+def beautyPrint(line, useColors):
+    curr = 0
+    end = len(line)
+
+    color = 'd'
+    if useColors:
+        if end > 1 and line[0] == '>' and line[1] == '>':
+            color = 'r'
+        elif end > 1 and line[0] == '>' and line[1] != '>':
+            color = 'g'
+
+    while curr < end:
+        setColor('d')
+        print('│', end='')
+
+        setColor(color)
+        print(line[curr:curr+cols-2], end='')
+
+        if curr + cols >= end:
+            print(' ' * (cols - end + curr - 2), end='')
+
+        setColor('d')
+        print('│')
+
+        curr = curr + cols - 2
+
 
 cols = getTermSize()
 
@@ -57,30 +83,15 @@ for post in thread:
     if type(post['com']) is not str:
         post['com'] = ''
 
+    if 'sub' in post and type(post['sub']) is str:
+        setColor('d')
+        beautyPrint(fixCom(post['sub']), False)
+
+        print('╞' + '═' * (cols - 2) + '╡')
+
+
     for line in fixCom(post['com']).split('\n'):
-        curr = 0
-        end = len(line)
-
-        color = 'd'
-        if end > 1 and line[0] == '>' and line[1] == '>':
-            color = 'r'
-        elif end > 1 and line[0] == '>' and line[1] != '>':
-            color = 'g'
-
-        while curr < end:
-            setColor('d')
-            print('│', end='')
-
-            setColor(color)
-            print(line[curr:curr+cols-2], end='')
-
-            if curr + cols >= end:
-                print(' ' * (cols - end + curr - 2), end='')
-
-            setColor('d')
-            print('│')
-
-            curr = curr + cols - 2
+        beautyPrint(line, True)
 
     setColor('d')
     print('╰' + '─' * (cols - 2) + '╯')

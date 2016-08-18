@@ -6,11 +6,12 @@ if [[ "$board" == "" ]]; then board='g'; fi
 # get a random thread
 thr=`curl -s https://a.4cdn.org/$board/threads.json | jq '.[].threads?[].no' | shuf | head -n 1`
 
+# 4chan doesn't like sending requests more frequently than 1 per second
 sleep 1
 
 # display its posts
 curl -s https://a.4cdn.org/$board/thread/$thr.json \
-	| jq '[.posts?[] | {no: .no, com: .com, now: .now}]' \
+	| jq '[.posts?[] | {no: .no, com: .com, now: .now, sub: .sub}]' \
 	| tr -d '\n' \
 	| python display.py \
 	| less -r
