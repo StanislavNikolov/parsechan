@@ -5,3 +5,5 @@
 	cd parsechan
 	chmod +x ./DOIT
 	./DOIT g
+
+BTW, if you haven't installed jq already, you should be ashamed of yourself.
