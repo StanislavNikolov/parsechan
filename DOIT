@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+board="$1"
+if [[ "$board" == "" ]]; then board='g'; fi
+
+# get a random thread
+thr=`curl -s https://a.4cdn.org/$board/threads.json | jq '.[].threads?[].no' | shuf | head -n 1`
+
+sleep 1
+
+# display its posts
+curl -s https://a.4cdn.org/$board/thread/$thr.json \
+	| jq '[.posts?[] | {no: .no, com: .com, now: .now}]' \
+	| tr -d '\n' \
+	| python display.py
