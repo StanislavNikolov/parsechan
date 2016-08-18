@@ -49,8 +49,5 @@ for post in thread:
             print('│')
             curr = curr + cols - 2
 
-    print('╰', end='')
-    print('─' * (cols - 2), end='')
-    print('╯')
-
+    print('╰' + '─' * (cols - 2) + '╯')
     print()
