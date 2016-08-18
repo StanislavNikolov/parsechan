@@ -32,6 +32,12 @@ for post in thread:
     print('─' * (cols - len(str(post['no'])) - len(date) - 8 ), end='')
     print('╮')
 
+    if 'com' not in post:
+        post['com'] = ''
+
+    if type(post['com']) is not str:
+        post['com'] = ''
+
     for line in fixCom(post['com']).split('\n'):
         curr = 0
         end = len(line)
