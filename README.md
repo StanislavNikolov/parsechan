@@ -1,4 +1,4 @@
-![screenshot](http://i.imgur.com/CB5puCO.png)
+![screenshot](http://i.imgur.com/A8iR6rc.png)
 
 ## Installing:
 	git clone git@github.com:StanislavNikolov/parsechan.git
