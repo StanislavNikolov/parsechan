@@ -47,7 +47,7 @@ for post in thread:
             if curr + cols >= end:
                 print(' ' * (cols - end + curr - 2), end='')
             print('│')
-            curr = curr + cols - 1
+            curr = curr + cols - 2
 
     print('╰', end='')
     print('─' * (cols - 2), end='')
